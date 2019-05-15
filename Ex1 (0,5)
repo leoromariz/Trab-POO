@@ -1,0 +1,232 @@
+package br.lasalle;
+
+public class Retangulo implements IShape1, IShow {
+
+	private double altura, largura;
+	
+	public Retangulo(double altura, double largura)
+	{
+		this.altura = altura;
+		this.largura = largura;
+	}
+	public double getAltura() {
+		return altura;
+	}
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+	public double getLargura() {
+		return largura;
+	}
+	public void setLargura(double largura) {
+		this.largura = largura;
+	} 
+    
+	@Override
+	public double getArea() {
+		return this.altura*this.largura;
+	}
+	@Override
+	public void print() {
+		System.out.println("Area: " + this.getArea());
+		System.out.println("Perimetro: " + this.getPerimetro());
+		
+	}
+
+	@Override
+	public double getPerimetro() {
+		return 2*this.altura+2*this.largura;
+		
+	}
+}
+
+________________________________________________________________________
+
+package br.lasalle;
+
+public interface IShape1 {
+	double getArea();
+	double getPerimetro();
+
+}
+
+________________________________________________________________________
+
+package br.lasalle;
+
+public interface IShow {
+	void print();
+
+}
+
+________________________________________________________________________
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		Retangulo rec = new Retangulo(10,3);
+		Triangulo tri = new Triangulo(10,3);
+		Circulo cir = new Circulo(3);
+	
+		rec.print();
+		tri.print();
+		cir.print();
+	}
+
+________________________________________________________________________
+
+package br.lasalle;
+
+public class Triangulo implements IShape1, IShow{
+
+	private double altura, lado;
+	
+	public Triangulo(double altura, double lado)
+	{
+		this.altura = altura;
+		this.lado = lado;
+	}
+	public double getAltura() {
+		return altura;
+	}
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+	public double getLado() {
+		return lado;
+	}
+	public void setLado(double lado) {
+		this.lado = lado;
+	}
+		
+	@Override
+	public double getArea() {
+		return (this.altura*this.lado)/2;
+	}
+	@Override
+	public double getPerimetro() {
+		return lado*3;
+	} 
+	
+	@Override
+	public void print() {
+		System.out.println("Area: " + this.getArea());
+		System.out.println("Perimetro: " + this.getPerimetro());
+	}
+	
+	
+}
+
+________________________________________________________________________
+
+package br.lasalle;
+
+public class Circulo implements IShape1, IShow{
+	
+	private double raio;
+	
+	public Circulo(double raio)
+	{
+		this.raio = raio;
+	}
+
+	public double getRaio() {
+		return raio;
+	}
+	
+	public void setRaio(double raio) {
+		this.raio = raio;
+	}
+	
+
+	@Override
+	public double getArea() {
+		return 3.14*raio*raio;
+	}
+
+	@Override
+	public double getPerimetro() {
+		return 3.14*raio;
+	}
+
+	
+	@Override
+	public void print() {
+		System.out.println("Area: " + this.getArea());
+		System.out.println("Perimetro: " + this.getPerimetro());
+		}
+
+	}
+
+
+________________________________________________________________________
+
+package br.lasalle;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TestInterface {
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		
+		try
+		{
+			System.out.println("Entre com a altura do Retangulo: ");
+			int Altura = in.nextInt();
+			
+			System.out.println("Entre com a Largura do Retangulo: ");
+			int Largura = in.nextInt();
+			
+			Retangulo rec = new Retangulo(Altura,Largura);
+			rec.print();
+		}
+		catch(ArithmeticException e1)
+		{
+			System.err.println("Nao pode digitar 0!");
+		}
+		catch(InputMismatchException e2)
+		{
+			System.err.println("Somente numeros!");
+		}
+		try
+		{
+			System.out.println("Entre com a altura do Triangulo: ");
+			int alt = in.nextInt();
+			
+			System.out.println("Entre com a Lado do Triangulo: ");
+			int Lado = in.nextInt();
+			
+			Triangulo tri = new Triangulo(alt,Lado);
+			tri.print();
+		}
+		catch(ArithmeticException e1)
+		{
+			System.err.println("Nao pode digitar 0!");
+		}
+		catch(InputMismatchException e2)
+		{
+			System.err.println("Somente numeros!");
+		}
+			
+		try
+		{
+			System.out.println("Entre com a Raio do Circulo: ");
+			int raio = in.nextInt();
+				
+			Circulo cir = new Circulo(raio);
+			cir.print();
+		}
+		catch(ArithmeticException e1)
+		{
+			System.err.println("Nao pode digitar 0!");
+		}
+		catch(InputMismatchException e2)
+		{
+			System.err.println("Somente numeros!");
+		}
+	}
+
+	}
